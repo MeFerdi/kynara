@@ -9,6 +9,12 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
+  "overrides": {
+    "react-helmet-async": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  },
   "dependencies": {
     "framer-motion": "^12.34.0",
     "lucide-react": "^0.563.0",
