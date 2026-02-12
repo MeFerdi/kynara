@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -14,6 +15,7 @@ const OfferingPage = ({ title, subtitle, content, diagram }) => {
 
     return (
         <div className="app">
+            <SEO title={title} description={content?.props?.children} path={window.location.pathname} />
             <Navbar />
 
             {/* Hero Section */}

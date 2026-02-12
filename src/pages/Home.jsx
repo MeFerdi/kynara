@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import SEO from '../components/SEO';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import Services from '../components/Services';
@@ -15,6 +16,7 @@ const Home = () => {
 
     return (
         <div className="home-page">
+            <SEO />
             <Navbar />
             <Hero />
             <Services />
