@@ -29,7 +29,7 @@ const Services = () => {
         <section id="services" style={{ padding: 'var(--spacing-xxl) 0', background: 'var(--bg-dark)' }}>
             <div className="container">
                 <h2 style={{
-                    fontSize: '2.5rem',
+                    fontSize: 'clamp(2rem, 4vw, 2.5rem)',
                     marginBottom: 'var(--spacing-xl)',
                     textAlign: 'center'
                 }}>
@@ -38,7 +38,7 @@ const Services = () => {
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
                     gap: 'var(--spacing-lg)'
                 }}>
                     {services.map((service, index) => (
