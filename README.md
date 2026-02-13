@@ -1,6 +1,6 @@
 ## Kynara Labs
 
-Technology Company offering software development, automation systems, and product design.
+Technology Company offering software development, automation systems, and product design services.
 
 ### Technology Stack
 
