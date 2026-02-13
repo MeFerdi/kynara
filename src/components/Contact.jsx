@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useBooking } from '../context/BookingContext';
 
 const Contact = () => {
+    const { openBooking } = useBooking();
+
     return (
         <section id="contact" style={{ padding: 'var(--spacing-xxl) 0', background: 'var(--bg-dark)' }}>
             <div className="container" style={{ maxWidth: '600px' }}>
@@ -15,6 +18,26 @@ const Contact = () => {
                 }}>
                     Book a consultation or tell us about your project.
                 </p>
+
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 'var(--spacing-xl)' }}>
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={openBooking}
+                        style={{
+                            padding: '1rem 2rem',
+                            background: 'var(--accent-forest)',
+                            color: 'white',
+                            fontWeight: '600',
+                            borderRadius: 'var(--radius-full)',
+                            fontSize: '1.1rem',
+                            border: 'none',
+                            cursor: 'pointer'
+                        }}
+                    >
+                        Schedule a Consultation
+                    </motion.button>
+                </div>
 
                 <form style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xs)' }}>
