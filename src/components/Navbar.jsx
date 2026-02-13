@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
+import { useBooking } from '../context/BookingContext';
+
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const location = useLocation();
     const navigate = useNavigate();
+    const { openBooking } = useBooking();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -102,7 +105,7 @@ const Navbar = () => {
                             whileTap={{ scale: 0.95 }}
                         >
                             <button
-                                onClick={() => handleScrollTo('contact')}
+                                onClick={openBooking}
                                 style={{
                                     padding: '0.5rem 1rem',
                                     background: 'var(--text-primary)',
@@ -135,7 +138,10 @@ const Navbar = () => {
                     </button>
                 ))}
                 <button
-                    onClick={() => handleScrollTo('contact')}
+                    onClick={() => {
+                        setIsOpen(false);
+                        openBooking();
+                    }}
                     style={{
                         padding: '1rem 2rem',
                         background: 'var(--text-primary)',

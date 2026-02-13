@@ -1,8 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import AnimatedBackground from './AnimatedBackground';
+import { useBooking } from '../context/BookingContext';
 
 const Hero = () => {
+    const { openBooking } = useBooking();
+
     return (
         <section style={{
             minHeight: '100vh',
@@ -53,8 +56,8 @@ const Hero = () => {
                     transition={{ duration: 0.6, delay: 0.4 }}
                     style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}
                 >
-                    <a
-                        href="#contact"
+                    <button
+                        onClick={openBooking}
                         style={{
                             display: 'inline-block',
                             padding: '1.2rem 2.5rem',
@@ -76,7 +79,7 @@ const Hero = () => {
                         }}
                     >
                         Book a Consultation
-                    </a>
+                    </button>
                     <a
                         href="#workflow"
                         style={{
