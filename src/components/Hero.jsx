@@ -19,7 +19,7 @@ const Hero = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                     style={{
-                        fontSize: 'clamp(3.5rem, 6vw, 6rem)',
+                        fontSize: 'clamp(2.5rem, 8vw, 6rem)',
                         lineHeight: 1,
                         marginBottom: 'var(--spacing-lg)',
                         background: 'linear-gradient(to bottom, #ffffff, #a0a0a0)',

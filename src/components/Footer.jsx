@@ -24,7 +24,7 @@ const Footer = () => {
                 <div style={{ display: 'flex', gap: 'var(--spacing-lg)' }}>
                     <a href="#" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>LinkedIn</a>
                     <a href="#" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Twitter</a>
-                    <a href="mailto:hello@kynara.com" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Email</a>
+                    <a href="mailto:contact@kynaralabs.com" style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Email</a>
                 </div>
             </div>
         </footer>
