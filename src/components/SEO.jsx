@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SEO = ({ title, description, path = "" }) => {
-    const siteUrl = "https://kynara.io";
+    const siteUrl = "https://kynaralabs.com";
     const fullUrl = `${siteUrl}${path}`;
     const defaultTitle = "Kynara Product Lab";
     const defaultDescription = "Kynara Product Lab delivers engineered software, automation systems, and design-driven solutions for growing businesses.";
