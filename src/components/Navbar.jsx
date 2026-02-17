@@ -42,8 +42,8 @@ const Navbar = () => {
 
     const navLinks = [
         { id: 'services', label: 'Services' },
-        { id: 'work', label: 'Work' },
-        { id: 'workflow', label: 'Workflow' }
+        { id: 'Our Products', label: 'Our Products' },
+        { id: 'Our Approach', label: 'Our Approach' }
     ];
 
     return (
