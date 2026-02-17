@@ -75,7 +75,7 @@ const FormModal = ({ isOpen, type, message, onClose }) => {
                                 justifyContent: 'center'
                             }}
                         >
-                            {isSuccess ? '✨' : '⚠️'}
+                            {isSuccess ? '✅' : ' 😔'}
                         </motion.div>
 
                         <h3 style={{
