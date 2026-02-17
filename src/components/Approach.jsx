@@ -27,7 +27,7 @@ const steps = [
 
 const Approach = () => {
     return (
-        <section id="workflow" style={{
+        <section id="Our Approach" style={{
             padding: 'var(--spacing-xxl) 0',
             background: 'linear-gradient(180deg, var(--bg-dark) 0%, #0f1210 100%)',
             position: 'relative'
@@ -41,7 +41,7 @@ const Approach = () => {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent'
                 }}>
-                    Our Workflow
+                    Our Approach
                 </h2>
 
                 <div style={{
