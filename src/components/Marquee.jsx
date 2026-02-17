@@ -43,7 +43,7 @@ const ControlledSolutionFeed = () => {
     }, []);
 
     return (
-        <section id="work" style={{
+        <section id="Our Products" style={{
             position: 'relative',
             height: '350px',
             background: 'rgba(5,5,5,0.75)',
