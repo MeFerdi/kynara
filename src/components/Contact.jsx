@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useBooking } from '../context/BookingContext';
+import FormModal from './FormModal';
 
 const Contact = () => {
     const { openBooking } = useBooking();
+    const [modalState, setModalState] = useState({ isOpen: false, type: '', message: '' });
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     return (
         <section id="contact" style={{ padding: 'var(--spacing-xxl) 0', background: 'var(--bg-dark)' }}>
@@ -43,6 +46,7 @@ const Contact = () => {
                     style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}
                     onSubmit={async (e) => {
                         e.preventDefault();
+                        setIsSubmitting(true);
                         const form = e.target;
                         const name = form.name.value;
                         const email = form.email.value;
@@ -54,13 +58,28 @@ const Contact = () => {
                                 body: JSON.stringify({ name, email, message })
                             });
                             if (res.ok) {
-                                alert('Message sent!');
+                                setModalState({
+                                    isOpen: true,
+                                    type: 'success',
+                                    message: 'Thanks for reaching out! We\'ll get back to you shortly.'
+                                });
                                 form.reset();
                             } else {
-                                alert('Failed to send message.');
+                                const errorData = await res.json();
+                                setModalState({
+                                    isOpen: true,
+                                    type: 'error',
+                                    message: errorData.error || 'Failed to send message. Please try again.'
+                                });
                             }
-                        } catch {
-                            alert('Failed to send message.');
+                        } catch (error) {
+                            setModalState({
+                                isOpen: true,
+                                type: 'error',
+                                message: 'Network error. Please check your connection and try again.'
+                            });
+                        } finally {
+                            setIsSubmitting(false);
                         }
                     }}
                 >
@@ -123,8 +142,10 @@ const Contact = () => {
                     </div>
 
                     <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                        type="submit"
+                        disabled={isSubmitting}
+                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                         style={{
                             marginTop: 'var(--spacing-md)',
                             padding: 'var(--spacing-md)',
@@ -132,13 +153,22 @@ const Contact = () => {
                             color: 'white',
                             fontWeight: '600',
                             borderRadius: 'var(--radius-sm)',
-                            fontSize: '1rem'
+                            fontSize: '1rem',
+                            opacity: isSubmitting ? 0.6 : 1,
+                            cursor: isSubmitting ? 'not-allowed' : 'pointer'
                         }}
                     >
-                        Send Message
+                        {isSubmitting ? 'Sending...' : 'Send Message'}
                     </motion.button>
                 </form>
             </div>
+            
+            <FormModal 
+                isOpen={modalState.isOpen}
+                type={modalState.type}
+                message={modalState.message}
+                onClose={() => setModalState({ ...modalState, isOpen: false })}
+            />
         </section>
     );
 };
