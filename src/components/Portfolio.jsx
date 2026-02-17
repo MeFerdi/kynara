@@ -31,7 +31,7 @@ const projects = [
 
 const Portfolio = () => {
     return (
-        <section id="portfolio" style={{ padding: 'var(--spacing-xxl) 0', background: 'var(--bg-dark)' }}>
+        <section id="Our Products" style={{ padding: 'var(--spacing-xxl) 0', background: 'var(--bg-dark)' }}>
             <div className="container">
                 <h2 style={{
                     fontSize: '2.5rem',
