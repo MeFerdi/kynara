@@ -52,7 +52,7 @@ const Contact = () => {
                         const email = form.email.value;
                         const message = form.message.value;
                         try {
-                            const API_URL = process.env.REACT_APP_API_URL
+                            const API_URL = import.meta.env.VITE_API_URL || process.env.REACT_APP_API_URL || 'https://kynara-backend-production.up.railway.app';
                             const res = await fetch(`${API_URL}/api/contact`,{
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
