@@ -52,8 +52,9 @@ const Contact = () => {
                         const email = form.email.value;
                         const message = form.message.value;
                         try {
-                            const API_URL = import.meta.env.VITE_API_URL || process.env.REACT_APP_API_URL || 'https://kynara-backend-production.up.railway.app';
-                            const res = await fetch(`${API_URL}/api/contact`,{
+                            const baseUrl = import.meta.env.VITE_API_URL || process.env.REACT_APP_API_URL || 'https://kynara-production.up.railway.app';
+                            const API_URL = baseUrl.replace(/\/$/, '');
+                            const res = await fetch(`${API_URL}/api/contact`, {
                                 method: 'POST',
                                 headers: { 'Content-Type': 'application/json' },
                                 body: JSON.stringify({ name, email, message })
