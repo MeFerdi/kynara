@@ -39,12 +39,38 @@ const Contact = () => {
                     </motion.button>
                 </div>
 
-                <form style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+                <form 
+                    style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}
+                    onSubmit={async (e) => {
+                        e.preventDefault();
+                        const form = e.target;
+                        const name = form.name.value;
+                        const email = form.email.value;
+                        const message = form.message.value;
+                        try {
+                            const res = await fetch('http://localhost:5000/api/contact', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ name, email, message })
+                            });
+                            if (res.ok) {
+                                alert('Message sent!');
+                                form.reset();
+                            } else {
+                                alert('Failed to send message.');
+                            }
+                        } catch {
+                            alert('Failed to send message.');
+                        }
+                    }}
+                >
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xs)' }}>
                         <label style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Name</label>
                         <input
                             type="text"
-                            placeholder="Jane Doe"
+                            name="name"
+                            placeholder="Your Name"
+                            required
                             style={{
                                 padding: 'var(--spacing-md)',
                                 background: 'var(--bg-surface)',
@@ -61,7 +87,9 @@ const Contact = () => {
                         <label style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Email</label>
                         <input
                             type="email"
-                            placeholder="jane@example.com"
+                            name="email"
+                            placeholder="yourname@example.com"
+                            required
                             style={{
                                 padding: 'var(--spacing-md)',
                                 background: 'var(--bg-surface)',
@@ -75,27 +103,12 @@ const Contact = () => {
                     </div>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xs)' }}>
-                        <label style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Project Brief (Optional)</label>
-                        <input
-                            type="file"
-                            style={{
-                                padding: 'var(--spacing-md)',
-                                background: 'var(--bg-surface)',
-                                border: '1px solid var(--border-subtle)',
-                                borderRadius: 'var(--radius-sm)',
-                                color: 'var(--text-primary)',
-                                outline: 'none',
-                                fontFamily: 'var(--font-body)',
-                                cursor: 'pointer'
-                            }}
-                        />
-                    </div>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xs)' }}>
                         <label style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Message</label>
                         <textarea
                             rows="5"
+                            name="message"
                             placeholder="Tell us about your project..."
+                            required
                             style={{
                                 padding: 'var(--spacing-md)',
                                 background: 'var(--bg-surface)',
