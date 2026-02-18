@@ -8,13 +8,17 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: ['https://kynaralabs.com', 'http://localhost:5173', 'http://localhost:3000', ' https://kynara-production.up.railway.app/api/contact'],
+  origin: ['https://kynaralabs.com', 'https://www.kynaralabs.com', 'http://localhost:5173', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'OPTIONS'],
-  credentials: true
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+// Explicitly handle OPTIONS requests
+app.options('*', cors(corsOptions));
 
 app.post('/api/contact', async (req, res) => {
   const { name, email, message } = req.body;
