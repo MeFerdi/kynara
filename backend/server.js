@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: ['https://kynaralabs.com', 'http://localhost:5173', 'http://localhost:3000'],
+  origin: ['https://kynaralabs.com', 'http://localhost:5173', 'http://localhost:3000', ' https://kynara-production.up.railway.app/api/contact'],
   methods: ['GET', 'POST', 'OPTIONS'],
   credentials: true
 };
