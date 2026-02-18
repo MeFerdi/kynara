@@ -16,11 +16,23 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Explicitly handle OPTIONS requests
 app.options('*', cors(corsOptions));
 
+// Health check endpoint
+app.get('/', (req, res) => {
+  res.json({ status: 'Server is running', timestamp: new Date().toISOString() });
+});
+
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
 app.post('/api/contact', async (req, res) => {
+  console.log('Received POST request to /api/contact');
+  console.log('Request body:', req.body);
   const { name, email, message } = req.body;
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'All fields are required.' });
@@ -56,6 +68,18 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({ error: 'Route not found' });
+});
+
+// Error handler
+app.use((err, req, res, next) => {
+  console.error('Server error:', err);
+  res.status(500).json({ error: 'Internal server error', details: err.message });
+});
+
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
