@@ -8,7 +8,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
-  origin: ['https://kynaralabs.com', 'https://www.kynaralabs.com', 'http://localhost:5173', 'http://localhost:3000'],
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://kynaralabs.com', 'https://www.kynaralabs.com']
+    : ['https://kynaralabs.com', 'https://www.kynaralabs.com', 'http://localhost:5173', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'OPTIONS'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
