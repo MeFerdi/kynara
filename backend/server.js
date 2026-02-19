@@ -43,8 +43,8 @@ app.post('/api/contact', async (req, res) => {
   try {
     const transporter = nodemailer.createTransport({
       host: process.env.ZOHO_HOST,
-      port: 465,
-      secure: true,
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.ZOHO_USER,
         pass: process.env.ZOHO_PASS,
