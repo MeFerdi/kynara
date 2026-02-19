@@ -1,6 +1,6 @@
 // Simple Express server for contact form
 const express = require('express');
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 const cors = require('cors');
 require('dotenv').config();
 
@@ -19,6 +19,10 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
 
 // Explicitly handle OPTIONS requests
 app.options('*', cors(corsOptions));
@@ -41,19 +45,23 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: process.env.ZOHO_HOST,
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.ZOHO_USER,
-        pass: process.env.ZOHO_PASS,
-      },
-    });
+    if (!process.env.SENDGRID_API_KEY) {
+      return res.status(500).json({ error: 'Email service not configured.' });
+    }
 
-    await transporter.sendMail({
-      from: `"${name}" <${process.env.ZOHO_USER}>`,
-      to: process.env.ZOHO_RECEIVER,
+    const fromAddress = process.env.SENDGRID_FROM || process.env.ZOHO_RECEIVER;
+    const toAddress = process.env.ZOHO_RECEIVER;
+
+    if (!fromAddress || !toAddress) {
+      return res.status(500).json({ error: 'Email sender/receiver not configured.' });
+    }
+
+    await sgMail.send({
+      to: toAddress,
+      from: {
+        email: fromAddress,
+        name: 'Kynara App',
+      },
       subject: `New Contact Form Submission from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       replyTo: email,
@@ -63,8 +71,8 @@ app.post('/api/contact', async (req, res) => {
   } catch (error) {
     console.error('Email error:', error);
     let errorMsg = 'Failed to send email.';
-    if (error.code === 'EAUTH') {
-      errorMsg = 'Authentication failed. Check your Zoho credentials in .env';
+    if (error.code === 401 || error.code === 403) {
+      errorMsg = 'Authentication failed. Check your SendGrid API key.';
     }
     res.status(500).json({ error: errorMsg, details: error.message });
   }
