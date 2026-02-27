@@ -18,7 +18,7 @@ const SunLinkLogo = ({ size = 40 }) => (
                 stroke="#E76F51" strokeWidth="2.5" strokeLinecap="round"
             />
         ))}
-        <path d="M8 28 Q14 24 20 26 Q26 28 32 24" stroke="#E76F51" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+        {/* <path d="M8 28 Q14 24 20 26 Q26 28 32 24" stroke="#E76F51" strokeWidth="1.5" fill="none" strokeLinecap="round" /> */}
     </svg>
 );
 
