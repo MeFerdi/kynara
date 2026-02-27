@@ -42,7 +42,6 @@ const Navbar = () => {
 
     const navLinks = [
         { id: 'services', label: 'Services' },
-        { id: 'Our Products', label: 'Our Products' },
         { id: 'Our Approach', label: 'Our Approach' }
     ];
 
@@ -100,6 +99,15 @@ const Navbar = () => {
                                 {link.label}
                             </button>
                         ))}
+                        <Link
+                            to="/products"
+                            style={{
+                                fontSize: '0.9rem',
+                                color: location.pathname === '/products' ? 'var(--text-primary)' : 'var(--text-secondary)'
+                            }}
+                        >
+                            Products
+                        </Link>
                         <motion.div
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -137,6 +145,13 @@ const Navbar = () => {
                         {link.label}
                     </button>
                 ))}
+                <Link
+                    to="/products"
+                    onClick={() => setIsOpen(false)}
+                    style={{ fontSize: '1.5rem', color: 'var(--text-primary)', fontWeight: '600' }}
+                >
+                    Products
+                </Link>
                 <button
                     onClick={() => {
                         setIsOpen(false);
