@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import CustomSoftware from './pages/CustomSoftware';
 import AutomationSystems from './pages/AutomationSystems';
 import ProductDesign from './pages/ProductDesign';
+import Products from './pages/Products';
 
 import { BookingProvider } from './context/BookingContext';
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="/services/software" element={<CustomSoftware />} />
             <Route path="/services/automation" element={<AutomationSystems />} />
             <Route path="/services/design" element={<ProductDesign />} />
+            <Route path="/products" element={<Products />} />
           </Routes>
         </Router>
       </BookingProvider>
