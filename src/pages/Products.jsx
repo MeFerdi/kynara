@@ -417,8 +417,12 @@ const Products = () => {
                                     onMouseLeave={e => { e.currentTarget.style.background = 'var(--accent-sunrise)'; e.currentTarget.style.transform = 'none'; }}>
                                     Book a Demo →
                                 </button>
-                                <button onClick={openBooking} style={{ ...S.featBtnGhost, color: 'var(--accent-sunrise)' }}>
-                                    Get in touch ↗
+                                <a href="https://sunlink-xi.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                    style={{ ...S.featBtnGhost, color: 'var(--accent-sunrise)', textDecoration: 'none' }}>
+                                    Visit SunLink ↗
+                                </a>
+                                <button onClick={openBooking} style={{ ...S.featBtnGhost, color: 'var(--text-muted)' }}>
+                                    Get in touch
                                 </button>
                             </div>
                         </div>
@@ -459,6 +463,10 @@ const Products = () => {
                                 <button onClick={openBooking} style={{ ...S.featBtnGhost, color: 'var(--accent-river)' }}>
                                     Book a demo ↗
                                 </button>
+                                <a href="https://gridpulse-sand.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                    style={{ ...S.featBtnGhost, color: 'var(--accent-sunrise)', textDecoration: 'none' }}>
+                                    Visit GridPulse ↗
+                                </a>
                             </div>
                         </div>
                     </div>
