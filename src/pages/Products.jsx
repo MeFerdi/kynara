@@ -460,13 +460,13 @@ const Products = () => {
                                     onMouseLeave={e => { e.currentTarget.style.background = 'var(--accent-river)'; e.currentTarget.style.transform = 'none'; }}>
                                     Get API Access →
                                 </button>
+                                <a href="https://gridpulse-sand.vercel.app/" target="_blank" rel="noopener noreferrer"
+                                    style={{ ...S.featBtnGhost, color: 'var(--accent-river)', textDecoration: 'none' }}>
+                                    Visit GridPulse ↗
+                                </a>
                                 <button onClick={openBooking} style={{ ...S.featBtnGhost, color: 'var(--accent-river)' }}>
                                     Book a demo ↗
                                 </button>
-                                <a href="https://gridpulse-sand.vercel.app/" target="_blank" rel="noopener noreferrer"
-                                    style={{ ...S.featBtnGhost, color: 'var(--accent-sunrise)', textDecoration: 'none' }}>
-                                    Visit GridPulse ↗
-                                </a>
                             </div>
                         </div>
                     </div>
